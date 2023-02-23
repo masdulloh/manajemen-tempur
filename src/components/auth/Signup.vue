@@ -64,7 +64,7 @@ export default {
                             ref.set({
                                 username: this.username,
                                 user_id: userCreds.user.uid,
-                                type: 'cs'
+                                role: {}
                             })
                         }).then(() =>{
                             this.$router.push({ name: 'Beranda' })

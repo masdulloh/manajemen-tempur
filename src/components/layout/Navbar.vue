@@ -18,7 +18,7 @@
             <li class="nav-item" v-if="user">
                 <router-link :to="{ name: 'Orders' }" class="nav-link">Orders</router-link>
             </li>
-            <li class="nav-item" v-if="user && usertype=='admin'">
+            <li class="nav-item" v-if="user && userrole.user_view=='1'">
                 <router-link :to="{ name: 'Users' }" class="nav-link">Users</router-link>
             </li>
 
@@ -56,7 +56,8 @@ export default {
     data(){
         return{
             user: null,
-            usertype: null
+            usertype: null,
+            userrole: {}
         }
     },
     methods: {
@@ -81,7 +82,8 @@ export default {
                     } 
                     snapshot.forEach(doc => {
                         //console.log(doc.id, '=>', doc.data());
-                        this.usertype = doc.data().type
+                        this.usertype = doc.data().type;
+                        this.userrole = doc.data().role;
                         //console.log(this.usertype)
                     });
                 }).catch(err => {
